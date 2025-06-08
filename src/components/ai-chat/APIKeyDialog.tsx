@@ -72,7 +72,7 @@ const VolcengineEndpoint = memo(
           onChange={e => onChange(e.target.value)}
           placeholder="请输入火山引擎的接入点名称"
         />
-        <p className="text-xs text-muted-foreground">
+        {/* <p className="text-xs text-muted-foreground">
           您可以在
           <a
             href="https://console.volcengine.com/ark/region:ark+cn-beijing/endpoint"
@@ -83,7 +83,7 @@ const VolcengineEndpoint = memo(
             火山引擎控制台
           </a>
           获取接入点名称。
-        </p>
+        </p> */}
       </div>
     )
   },
@@ -194,20 +194,7 @@ const ApiKeyInput = memo(
           placeholder={`请输入您的 ${providerInfo?.name || '自定义服务'} API Key`}
           className="font-mono"
         />
-        {!isCustom && providerInfo && (
-          <p className="text-xs text-muted-foreground">
-            您可以在
-            <a
-              href={providerInfo.apiUrl}
-              rel="noreferrer"
-              target="_blank"
-              className="px-1 text-primary hover:underline"
-            >
-              {providerInfo.name}
-            </a>
-            获取 API Key。您的密钥将被安全地存储在本地。
-          </p>
-        )}
+
         {isCustom && (
           <p className="text-xs text-muted-foreground">
             您的密钥将被安全地存储在本地。

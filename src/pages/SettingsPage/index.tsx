@@ -28,7 +28,6 @@ export default function Settings() {
 
       <div className="space-y-8">
         <BrowserSetting />
-        <UpdateSetting />
         <AccountSetting />
         <DevSetting />
         <OtherSetting />

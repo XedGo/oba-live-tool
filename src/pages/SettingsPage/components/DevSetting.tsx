@@ -23,7 +23,7 @@ export function DevSetting() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>开发者选项</CardTitle>
+        <CardTitle>黑月亮调试助手</CardTitle>
         <CardDescription>调试和高级功能</CardDescription>
       </CardHeader>
       <CardContent>

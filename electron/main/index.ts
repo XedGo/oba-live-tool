@@ -13,7 +13,7 @@ import path from 'node:path'
 //
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { BrowserWindow, app, ipcMain, shell } from 'electron'
+import { BrowserWindow, Menu, app, ipcMain, shell } from 'electron'
 
 import { IPC_CHANNELS } from 'shared/ipcChannels'
 import { createLogger } from './logger'
@@ -56,13 +56,14 @@ const indexHtml = path.join(RENDERER_DIST, 'index.html')
 
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'OBA 直播工具',
+    title: '黑月亮直播工具箱',
     width: 1280,
     height: 800,
-    autoHideMenuBar: app.isPackaged,
+    autoHideMenuBar: false,
     icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences: {
       preload,
+      devTools: false,
       // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
       // nodeIntegration: true,
       nodeIntegration: process.env.NODE_ENV === 'development',
@@ -72,6 +73,7 @@ async function createWindow() {
     },
   })
 
+  Menu.setApplicationMenu(null)
   windowManager.setMainWindow(win)
 
   if (VITE_DEV_SERVER_URL) {
@@ -83,28 +85,12 @@ async function createWindow() {
     win.loadFile(indexHtml)
   }
 
-  // 加载完成后检查更新
+  // 加载完成后检查启动时传入的参数
   win.webContents.on('did-finish-load', async () => {
-    const logger = createLogger('检查更新')
-    try {
-      const latestVersion = await getLatestVersion()
-      const currentVersion = app.getVersion()
-      if (semver.lt(currentVersion, latestVersion)) {
-        logger.info(
-          `检查到可用更新：${currentVersion} -> ${latestVersion}，可前往应用设置-软件更新处手动更新`,
-        )
-
-        // 获取 CHANGELOG.md
-        const releaseNote = await fetchChangelog() // html
-
-        windowManager.send(IPC_CHANNELS.app.notifyUpdate, {
-          currentVersion,
-          latestVersion,
-          releaseNote,
-        })
-      }
-    } catch (err) {
-      logger.debug(`检查更新失败：${err}`)
+    //app.commandLine.appendSwitch('moon_key', 'C537739701CB5869B7F2E579EBE5017A');
+    const moonKey = app.commandLine.getSwitchValue('moon_key')
+    if (moonKey !== 'C537739701CB5869B7F2E579EBE5017A') {
+      app.quit()
     }
   })
 

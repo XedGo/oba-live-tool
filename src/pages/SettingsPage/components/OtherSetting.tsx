@@ -7,10 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import {
-  ExternalLinkIcon,
-  FileTextIcon,
-} from 'lucide-react'
+import { ExternalLinkIcon, FileTextIcon } from 'lucide-react'
 import { BugIcon } from 'lucide-react'
 import { IPC_CHANNELS } from 'shared/ipcChannels'
 
@@ -43,39 +40,6 @@ export function OtherSetting() {
               <FileTextIcon className="h-4 w-4" />
               打开日志文件夹
             </Button>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <h4 className="text-sm font-medium leading-none">项目信息</h4>
-              <p className="text-sm text-muted-foreground">
-                了解更多项目相关内容
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="gap-2" asChild>
-                <a
-                  href="https://github.com/qiutongxue/oba-live-tool"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <SimpleIconsGithub className="h-4 w-4" />
-                  GitHub
-                  <ExternalLinkIcon className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button variant="outline" size="sm" className="gap-2" asChild>
-                <a
-                  href="https://github.com/qiutongxue/oba-live-tool/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BugIcon className="h-4 w-4" />
-                  反馈问题
-                  <ExternalLinkIcon className="h-4 w-4" />
-                </a>
-              </Button>
-            </div>
           </div>
         </div>
       </CardContent>
